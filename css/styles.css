@@ -1,1 +1,164 @@
 /* Basic Navbar Styling */
+.navbar {
+    background-color: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Adding sticky effect shadow on scroll */
+.navbar.scrolled {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    transition: transform 0.3s ease;
+}
+
+.nav-item a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+    position: relative;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Hover color effect and underline animation */
+.nav-item a:hover {
+    color: #0073e6;
+}
+
+.nav-item a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #0073e6;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+
+.nav-item a:hover::after {
+    width: 100%;
+}
+
+/* Faded effect for non-hovered items */
+.inactive {
+    opacity: 0.5;
+}
+
+/* Hamburger icon */
+.hamburger {
+    display: none;
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+   content: '';
+   position: absolute;
+   width: 100%;
+   height: 3px;
+   background-color: #333;
+   left: 0;
+   transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
+}
+
+.hamburger::before {
+   top: -8px;
+}
+
+.hamburger::after {
+   bottom: -8px;
+}
+
+/* Responsive Design */
+
+/* Small screens (max-width: 576px) */
+@media (max-width: 576px) {
+    .navbar-links {
+       display: none;
+       flex-direction: column;
+       gap: 15px;
+       background-color: #fff;
+       position: absolute;
+       top: 100%;
+       left: 0;
+       right: 0;
+       padding: 20px;
+       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+       transform: translateY(-20px);
+       opacity: 0;
+       transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+ 
+    .navbar.active .navbar-links {
+       display: flex;
+       transform: translateY(0);
+       opacity: 1;
+    }
+ 
+    .hamburger {
+       display: block;
+    }
+ 
+    .navbar-links {
+       gap: 10px; /* Reduce spacing for small screens */
+    }
+ 
+    .nav-item a {
+       font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+}
+ 
+/* Medium screens (min-width: 576px and max-width: 991px) */
+@media (min-width: 576px) and (max-width: 991px) {
+    .navbar {
+       padding: 10px 20px;
+    }
+ 
+    .navbar-links {
+       gap: 20px; /* Slightly reduce spacing for medium screens */
+    }
+ 
+    .nav-item a {
+       font-size: 1rem; /* Keep font size readable on medium screens */
+    }
+ 
+    .hamburger {
+       display: none; /* Hide hamburger for tablets and larger screens */
+    }
+}
+ 
+ /* Large screens (min-width: 992px) */
+@media (min-width: 992px) {
+    .navbar {
+       padding: 15px 30px; /* Standard padding for larger screens */
+    }
+ 
+    .navbar-links {
+       display: flex; /* Standard horizontal layout */
+       gap: 30px;
+    }
+ 
+    .nav-item a {
+       font-size: 1.1rem; /* Slightly larger font size for desktop */
+    }
+}
+ 
