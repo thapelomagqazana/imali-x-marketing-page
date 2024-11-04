@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navItems = document.querySelectorAll(".nav-item a");
     const navbar = document.querySelector(".navbar");
     const hamburger = document.querySelector(".hamburger");
+    const darkModeToggle = document.querySelector("#dark-mode-checkbox");
 
     navItems.forEach(item => {
         item.addEventListener("mouseover", () => {
@@ -21,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburger.addEventListener("click", () => {
         navbar.classList.toggle("active");
         hamburger.classList.toggle("active");
+    });
+
+    // Dark mode toggle
+    darkModeToggle.addEventListener("change", () => {
+        document.body.classList.toggle("dark-mode");
     });
 
     // Add shadow on scroll

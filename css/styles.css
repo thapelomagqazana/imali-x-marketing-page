@@ -1,6 +1,7 @@
 /* Basic Navbar Styling */
 .navbar {
-    background-color: #fff;
+    background-color: var(--background-color, #fff);
+    color: var(--text-color, #333);
     padding: 15px 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -9,7 +10,15 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Logo Styling */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: inherit;
+    cursor: pointer;
 }
 
 /* Adding sticky effect shadow on scroll */
@@ -27,7 +36,7 @@
 .nav-item a {
     text-decoration: none;
     font-size: 1rem;
-    color: #333;
+    color: inherit;
     font-weight: 600;
     position: relative;
     transition: opacity 0.3s ease, color 0.3s ease;
@@ -58,6 +67,21 @@
     opacity: 0.5;
 }
 
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dark-mode-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.dark-mode-toggle label {
+    font-size: 1.5rem;
+}
+
 /* Hamburger icon */
 .hamburger {
     display: none;
@@ -86,6 +110,22 @@
 
 .hamburger::after {
    bottom: -8px;
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+    --background-color: #333;
+    --text-color: #fff;
+}
+ 
+body.dark-mode .navbar {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+ 
+body.dark-mode .navbar-links a,
+body.dark-mode .logo {
+    color: var(--text-color);
 }
 
 /* Responsive Design */
