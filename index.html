@@ -5,26 +5,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Marketing of Imali X</title>
         <link rel="stylesheet" href="./css/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
             <nav class="navbar">
                 <!-- Logo Placement -->
                 <div class="logo">Imali X</div>
-                <!-- Hamburger icon for mobile menu -->
-                <div class="hamburger"></div>
-                <ul class="navbar-links">
+                <!-- Hamburger icon for opening menu -->
+                <div class="hamburger" onclick="toggleMenu()"></div>
+
+                <!-- Fullscreen Menu controlled by hamburger -->
+                <div class="menu-overlay" id="menuOverlay">
+                    <span class="close-btn" onclick="toggleMenu()">&times;</span>
+                    <ul class="navbar-links">
                     <li class="nav-item"><a href="#home">Home</a></li>
                     <li class="nav-item"><a href="#features">Features</a></li>
                     <li class="nav-item"><a href="#about">About Us</a></li>
                     <li class="nav-item"><a href="#services">Services</a></li>
                     <li class="nav-item"><a href="#contact">Contact Us</a></li>
-                </ul>
+                    </ul>
 
-                <!-- Dark Mode Toggle -->
-                <div class="dark-mode-toggle">
+                    <!-- Dark Mode Toggle -->
+                    <div class="dark-mode-toggle">
                     <input type="checkbox" id="dark-mode-checkbox">
                     <label for="dark-mode-checkbox">🌙</label>
+                    </div>
+
+                    <!-- Language Selector -->
+                    <select class="language-selector" aria-label="Language Selector">
+                    <option value="en">EN</option>
+                    <option value="es">ES</option>
+                    <option value="fr">FR</option>
+                    </select>
+
+                    <!-- Login Button -->
+                    <a href="https://example.com/login" class="login-button">Login</a>
                 </div>
             </nav>
         </header>

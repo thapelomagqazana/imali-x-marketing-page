@@ -1,3 +1,10 @@
+// Toggle the fullscreen menu
+function toggleMenu() {
+    const menuOverlay = document.getElementById("menuOverlay");
+    menuOverlay.classList.toggle("active");
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const navItems = document.querySelectorAll(".nav-item a");
     const navbar = document.querySelector(".navbar");
