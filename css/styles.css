@@ -1,12 +1,31 @@
+/* Default (Light Mode) Styles */
+:root {
+    --background-gradient: linear-gradient(135deg, #4caf50 30%, #34a0a4 100%);
+    --background-color: #ffffff;
+    --text-color: #ffffff;
+    --text-color-1: #333;
+    --button-bg-color: #ffffff;
+    --button-text-color: #4caf50;
+    --scroll-indicator-color: #ffffff;
+    --button-hover-bg-color: #4caf50;
+    --button-hover-text-color: #ffffff;
+    --hamburger-color: #333;
+}
+
+/* Base Styling */
 body {
     font-family: 'Inter', sans-serif;
-    color: var(--text-color, #333);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 /* Basic Navbar Styling */
 .navbar {
-    background-color: var(--background-color, #fff);
-    padding: 15px 30px;
+    background-color: var(--background-color);
+    color: var(--text-color-1);
+    padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
@@ -26,29 +45,29 @@ body {
 }
 
 /* Adding sticky effect shadow on scroll */
-.navbar.scrolled {
+/* .navbar.scrolled {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .navbar-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     margin: 0;
 }
 
 .nav-item a {
     text-decoration: none;
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: 1.1rem;
+    color: var(--text-color);
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 /* Hover color effect and underline animation */
 .nav-item a:hover {
-    color: #0073e6;
+    color: var(--button-hover-bg-color);
 }
 
 /* Faded effect for non-hovered items */
@@ -62,7 +81,7 @@ body {
 .language-selector,
 .login-button {
     font-size: 1.1rem;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .dark-mode-toggle input[type="checkbox"] {
@@ -79,12 +98,12 @@ body {
     background-color: #444;
     border: none;
     border-radius: 4px;
-    color: #fff;
+    color: var(--text-color);
 }
 
 .login-button {
-    background-color: #0073e6;
-    color: #fff;
+    background-color: var(--button-text-color);
+    color: var(--button-bg-color);
     padding: 10px 20px;
     border-radius: 4px;
     text-decoration: none;
@@ -92,14 +111,14 @@ body {
 }
 
 .login-button:hover {
-    background-color: #005bb5;
+    background-color: var(--button-hover-bg-color);
 }
 
 /* Hamburger icon */
 .hamburger {
-    width: 30px;
-    height: 3px;
-    background-color: #333;
+    width: 25px;
+    height: 2px;
+    background-color: var(--hamburger-color);
     cursor: pointer;
     position: relative;
     transition: transform 0.3s ease;
@@ -110,18 +129,27 @@ body {
    content: '';
    position: absolute;
    width: 100%;
-   height: 3px;
-   background-color: #333;
+   height: 2px;
+   background-color: var(--hamburger-color);
    left: 0;
    transition: transform 0.3s ease, top 0.3s ease, bottom 0.3s ease;
 }
 
 .hamburger::before {
-   top: -8px;
+   top: -7px;
 }
 
 .hamburger::after {
-   bottom: -8px;
+   bottom: -7px;
+}
+
+.hamburger:hover {
+    background-color: var(--hamburger-color);
+}
+
+.hamburger:hover::before,
+.hamburger:hover::after {
+    background-color: var(--hamburger-color);
 }
 
 /* Fullscreen Menu Overlay */
@@ -133,7 +161,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
-    color: #fff;
+    color: var(--text-color);
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -158,17 +186,112 @@ body {
     top: 20px;
     right: 70px;
     font-size: 2.5rem;
-    color: #fff;
+    color: var(--text-color);
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .close-btn:hover {
-    color: #0073e6;
+    color: var(--button-hover-bg-color);
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-gradient);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hero Content Styling */
+.hero-content {
+    max-width: 90%;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.hero-logo {
+    width: 80px;
+    margin-bottom: 15px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.hero-headline {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero-subheadline {
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0 auto 20px;
+    line-height: 1.4;
+    animation: fadeIn 1.4s ease-in-out;
+}
+
+/* Learn More Button */
+.learn-more-button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.learn-more-button:hover {
+    background-color: var(--button-hover-bg-color);
+    color: var(--button-hover-text-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 15px;
+    font-size: 1.2rem;
+    color: var(--scroll-indicator-color);
+    animation: bounce 1.5s infinite;
+    cursor: pointer;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+ 
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+.dark-mode {
+    --background-gradient: linear-gradient(135deg, #1a1a1a 30%, #333333 100%);
+    --background-color: #333333;
+    --text-color: #ffffff;
+    --text-color-1: #ffffff;
+    --button-bg-color: #333333;
+    --button-text-color: #4caf50;
+    --scroll-indicator-color: #ffffff;
+    --button-hover-bg-color: #4caf50;
+    --button-hover-text-color: #333333;
+    --hamburger-color: #ffffff;
 }
 
 /* Dark Mode Styling */
-body.dark-mode {
+/* body.dark-mode {
     --background-color: #333;
     --text-color: #fff;
 }
@@ -185,83 +308,83 @@ body.dark-mode .logo {
 
 body.dark-mode .menu-overlay {
     background-color: rgba(51, 51, 51, 0.95);
-}
+} */
 /* Responsive Design */
 
 /* Small screens (max-width: 576px) */
 @media (max-width: 576px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+    .logo {
+        font-size: 1.3rem;
+    }
     .navbar-links {
-       display: none;
-       flex-direction: column;
-       gap: 15px;
-       background-color: #fff;
-       position: absolute;
-       top: 100%;
-       left: 0;
-       right: 0;
-       padding: 20px;
-       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-       transform: translateY(-20px);
-       opacity: 0;
-       transition: transform 0.3s ease, opacity 0.3s ease;
+        gap: 15px;
     }
- 
-    .navbar.active .navbar-links {
-        display: flex;
-        transform: translateY(0);
-        opacity: 1;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .utility-bar {
-        gap: 10px; /* Reduce spacing for small screens */
-    }
-
     .nav-item a {
-        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        font-size: 1rem;
     }
-
-    .language-selector,
-    .login-button {
-        font-size: 0.9rem; /* Adjust for small screen readability */
+    .language-selector, .login-button {
+        font-size: 1rem;
+    }
+    .close-btn {
+        right: 50px;
+        top: 15px;
+        font-size: 2rem;
+    }
+    .hamburger {
+        width: 24px;
+        height: 2px;
+    }
+    .menu-overlay {
+        padding: 15px;
     }
 }
- 
+
 /* Medium screens (min-width: 576px and max-width: 991px) */
 @media (min-width: 576px) and (max-width: 991px) {
     .navbar {
-       padding: 10px 20px;
+        padding: 12px 25px;
     }
- 
+    .logo {
+        font-size: 1.4rem;
+    }
     .navbar-links {
-       gap: 20px; /* Slightly reduce spacing for medium screens */
+        gap: 18px;
     }
- 
     .nav-item a {
-       font-size: 1rem; /* Keep font size readable on medium screens */
+        font-size: 1.1rem;
     }
- 
-    .hamburger {
-       display: none; /* Hide hamburger for tablets and larger screens */
+    .language-selector, .login-button {
+        font-size: 1rem;
+    }
+    .close-btn {
+        font-size: 2.2rem;
+        top: 18px;
+        right: 40px;
+    }
+    .menu-overlay {
+        padding: 20px;
     }
 }
- 
- /* Large screens (min-width: 992px) */
+
+/* Large screens (min-width: 992px) */
 @media (min-width: 992px) {
     .navbar {
-       padding: 15px 30px; /* Standard padding for larger screens */
+        padding: 15px 30px;
     }
- 
+    .logo {
+        font-size: 1.5rem;
+    }
     .navbar-links {
-       display: flex; /* Standard horizontal layout */
-       gap: 30px;
+        flex-direction: row;
+        gap: 30px;
     }
- 
     .nav-item a {
-       font-size: 1.1rem; /* Slightly larger font size for desktop */
+        font-size: 1.2rem;
+    }
+    .menu-overlay {
+        padding: 30px;
     }
 }
- 
