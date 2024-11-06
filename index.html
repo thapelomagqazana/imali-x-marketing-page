@@ -14,7 +14,7 @@
                 <!-- Logo Placement -->
                 <div class="logo">Imali X</div>
                 <!-- Hamburger icon for opening menu -->
-                <div class="hamburger" onclick="toggleMenu()"></div>
+                <div class="hamburger"></div>
 
                 <!-- Fullscreen Menu controlled by hamburger -->
                 <div class="menu-overlay" id="menuOverlay">
@@ -50,6 +50,15 @@
         <main>
             <!-- Hero Section -->
             <section class="hero-section">
+                <!-- Background Video -->
+                <video class="background-video" autoplay muted loop playsinline>
+                    <source src="./assets/videos/49049-459186395_medium.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- Overlay for Text Contrast -->
+                <div class="overlay"></div>
+
                 <div class="hero-content">
                     <img src="./assets/images/savings.png" alt="Imali X Logo" class="hero-logo">
                     <h1 class="hero-headline">Your Bank, Simplified</h1>
@@ -57,7 +66,7 @@
                     <button id="learn-more" class="learn-more-button">Learn More</button>
                 </div>
                 <!-- Scroll Indicator -->
-                <div class="scroll-indicator">&#8595;</div>
+                <!-- <div class="scroll-indicator">&#8595;</div> -->
             </section>
 
         </main>

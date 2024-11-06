@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navbar = document.querySelector(".navbar");
     const hamburger = document.querySelector(".hamburger");
     const darkModeToggle = document.querySelector("#dark-mode-checkbox");
+    const progressBar = document.getElementById("progressBar");
 
     navItems.forEach(item => {
         item.addEventListener("mouseover", () => {
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Toggle mobile menu
     hamburger.addEventListener("click", () => {
+        toggleMenu();
         navbar.classList.toggle("active");
         hamburger.classList.toggle("active");
     });
@@ -36,12 +38,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.toggle("dark-mode");
     });
 
-    // Add shadow on scroll
+    // Shrink Navbar on Scroll
     window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
+        navbar.classList.add("shrink");
         } else {
-        navbar.classList.remove("scrolled");
+        navbar.classList.remove("shrink");
         }
+    });
+
+    // Scroll Progress Indicator
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollProgress = (scrollTop / documentHeight) * 100;
+        progressBar.style.width = `${scrollProgress}%`;
     });
 });
