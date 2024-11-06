@@ -1,6 +1,6 @@
 /* Default (Light Mode) Styles */
 :root {
-    --background-overlay: rgba(0, 0, 0, 0.4);
+    --background-overlay: rgba(0, 0, 0, 0.2);
     --background-color: #ffffff;
     --text-color: #ffffff;
     --text-color-1: #333;
@@ -14,16 +14,16 @@
 
 /* Dark Mode Variables */
 .dark-mode {
-    --background-overlay: rgba(255, 255, 255, 0.3);
-    --background-color: #333333;
-    --text-color: #ffffff;
+    --background-overlay: rgba(0, 0, 0, 0.7);
+    --background-color: #1a1a1a;
+    --text-color: #e0e0e0;
     --text-color-1: #ffffff;
     --button-bg-color: #333333;
     --button-text-color: #4caf50;
-    --scroll-indicator-color: #ffffff;
+    --scroll-indicator-color: #4caf50;
     --button-hover-bg-color: #4caf50;
-    --button-hover-text-color: #333333;
-    --hamburger-color: #ffffff;
+    --button-hover-text-color: #1a1a1a;
+    --hamburger-color: #e0e0e0;
 }
 
 /* Base Styling */
@@ -303,10 +303,10 @@ body {
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
     border: none;
-    padding: 12px 24px;
+    padding: 14px 28x;
     font-size: 1rem;
     font-weight: 600;
-    border-radius: 8ch;
+    border-radius: 6px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
@@ -314,19 +314,8 @@ body {
 .learn-more-button:hover {
     background-color: var(--button-hover-bg-color);
     color: var(--button-hover-text-color);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-
-/* Scroll Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 15px;
-    font-size: 1.2rem;
-    color: var(--scroll-indicator-color);
-    animation: bounce 1.5s infinite;
-    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Animations */
@@ -338,6 +327,58 @@ body {
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(10px); }
+}
+
+/* Offer Message Styling */
+.offer-message {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffeb3b;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    animation: fadeIn 1s ease-in-out;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Countdown Timer Styling */
+.countdown-timer {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 20px 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.countdown-timer span {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 16px;
+    border-radius: 6px;
+    min-width: 70px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+.countdown-timer span:not(:last-child)::after {
+    content: ":"; /* Separator between time units */
+    margin-left: 5px;
+    color: #ffeb3b;
+    font-size: 1.3rem;
+}
+
+/* Hover Interaction for Timer */
+.countdown-timer span:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
 }
 
 
@@ -354,7 +395,8 @@ body {
         font-size: 1.3rem;
     }
     .navbar-links {
-        gap: 15px;
+        gap: 10px;
+        font-size: 0.9rem;
     }
     .nav-item a {
         font-size: 1rem;
@@ -371,24 +413,100 @@ body {
         width: 24px;
         height: 2px;
     }
+
+    .hamburger::before{
+        top: -5px;
+    }
+
+    .hamburger::after{
+        bottom: -5px;
+    }
+
     .menu-overlay {
         padding: 15px;
+        gap: 10px;
+    }
+
+    .hero-section{
+        padding: 10px;
+        height: 150vh;
+    }
+
+    .hero-content {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    .hero-logo {
+        width: 70px;
+        margin-bottom: 15px;
+    }
+
+    .hero-headline {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .hero-subheadline {
+        font-size: 1rem;
+        line-height: 1.4;
+        margin-bottom: 20px;
+    }
+
+    .offer-message{
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .countdown-timer{
+        flex-direction: column;
+        font-size: 1rem;
+        gap: 10px;
+    }
+
+    .countdown-timer span {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+
+    .countdown-timer span:not(:last-child)::after {
+        content: "";
+    }
+
+    .learn-more-button{
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        border-radius: 5px;
+    }
+
+    .learn-more-button:hover{
+        transform: translateY(-2px);
+    }
+
+    .dark-mode-toggle label {
+        font-size: 1.2rem;
+    }
+
+    .language-selector{
+        font-size: 0.9rem;
+        padding: 4px 8px;
     }
 }
 
 /* Medium screens (min-width: 576px and max-width: 991px) */
 @media (min-width: 576px) and (max-width: 991px) {
     .navbar {
-        padding: 12px 25px;
+        padding: 12px 30px;
     }
     .logo {
-        font-size: 1.4rem;
+        font-size: 1.7rem;
     }
     .navbar-links {
-        gap: 18px;
+        flex-direction: row;
+        gap: 20px;
     }
     .nav-item a {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     .language-selector, .login-button {
         font-size: 1rem;
@@ -402,13 +520,18 @@ body {
         padding: 20px;
     }
 
+    .hero-section {
+        padding: 0 30px;
+        height: 150vh;
+    }
+
     .hero-content {
-        max-width: 80%;
+        max-width: 600px;
+        padding: 10px;
     }
 
     .hero-logo {
-        width: 90px;
-        margin-bottom: 20px;
+        width: 120px;
     }
 
     .hero-headline {
@@ -424,6 +547,45 @@ body {
     .learn-more-button {
         padding: 12px 24px;
         font-size: 1rem;
+    }
+
+    .offer-message {
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+        letter-spacing: 1.1px;
+    }
+
+    .hamburger {
+        width: 28px;
+        height: 3px;
+    }
+
+
+    .hamburger::before,
+    .hamburger::after {
+        height: 3px;
+        top: -8px;
+        bottom: -8px;
+    }
+
+    /* Offer Message */
+    .offer-message {
+        font-size: 1.4rem;
+    }
+
+    .countdown-timer {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .countdown-timer span {
+        padding: 8px 14px;
+        min-width: 60px;
+        font-size: 1rem;
+    }
+
+    .countdown-timer span:not(:last-child)::after {
+        content: "";
     }
 }
 
@@ -468,5 +630,26 @@ body {
     .learn-more-button {
         padding: 14px 28px;
         font-size: 1.1rem;
+    }
+
+    .offer-message {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        letter-spacing: 1.2px;
+    }
+
+    .countdown-timer {
+        font-size: 1.4rem;
+        gap: 15px;
+    }
+
+    .countdown-timer span {
+        padding: 12px 16px;
+        min-width: 70px;
+        font-size: 1.2rem;
+    }
+
+    .countdown-timer span:not(:last-child)::after {
+        font-size: 1.4rem;
     }
 }

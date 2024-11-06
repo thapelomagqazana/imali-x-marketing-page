@@ -12,6 +12,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const darkModeToggle = document.querySelector("#dark-mode-checkbox");
     const progressBar = document.getElementById("progressBar");
 
+
+    // Set the end date for the countdown (e.g., 7 days from now)
+    const endDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); 
+
+    function updateCountdown() {
+        const now = new Date();
+        const timeLeft = endDate - now;
+
+        if (timeLeft > 0) {
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+        } else {
+            document.getElementById("countdown-timer").textContent = "Offer Expired!";
+        }
+    }
+
+    // Update the countdown every second
+    setInterval(updateCountdown, 1000);
+
     navItems.forEach(item => {
         item.addEventListener("mouseover", () => {
             navItems.forEach((link) => {
