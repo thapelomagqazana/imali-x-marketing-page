@@ -57,6 +57,29 @@ document.addEventListener("DOMContentLoaded", () => {
         fadeInObserver.observe(element);
     });
 
+    const lazyLoadImages = document.querySelectorAll(".lazy-load");
+
+    const loadImage = (image) => {
+       image.src = image.dataset.src; // Replace placeholder with the actual image
+       image.onload = () => image.classList.add("loaded"); // Fade-in when loaded
+    };
+ 
+    const observerOptions1 = {
+       root: null,
+       threshold: 0.1, // Trigger when 10% of the image is in view
+    };
+ 
+    const observer = new IntersectionObserver((entries, observer) => {
+       entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+             loadImage(entry.target); // Load the image
+             observer.unobserve(entry.target); // Stop observing
+          }
+       });
+    }, observerOptions1);
+ 
+    lazyLoadImages.forEach((img) => observer.observe(img));
+
     navItems.forEach(item => {
         item.addEventListener("mouseover", () => {
             navItems.forEach((link) => {
