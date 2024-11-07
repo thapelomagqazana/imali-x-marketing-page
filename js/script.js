@@ -58,27 +58,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const lazyLoadImages = document.querySelectorAll(".lazy-load");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeBtn = document.querySelector(".lightbox-close");
 
+    // Load images lazily
     const loadImage = (image) => {
-       image.src = image.dataset.src; // Replace placeholder with the actual image
-       image.onload = () => image.classList.add("loaded"); // Fade-in when loaded
+        image.src = image.dataset.src;
+        image.onload = () => {
+            image.classList.add("loaded");
+        };
     };
- 
+
     const observerOptions1 = {
-       root: null,
-       threshold: 0.1, // Trigger when 10% of the image is in view
+        root: null,
+        threshold: 0.1,
     };
- 
-    const observer = new IntersectionObserver((entries, observer) => {
-       entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-             loadImage(entry.target); // Load the image
-             observer.unobserve(entry.target); // Stop observing
-          }
-       });
+
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                loadImage(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
     }, observerOptions1);
- 
-    lazyLoadImages.forEach((img) => observer.observe(img));
+
+    lazyLoadImages.forEach((image) => {
+        imageObserver.observe(image);
+
+        // Lightbox activation
+        image.addEventListener("click", () => {
+            lightboxImg.src = image.dataset.src;
+            lightboxCaption.textContent = image.alt;
+            lightbox.style.display = "flex";
+        });
+    });
+
+    // Close lightbox
+    closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    });
+
+    // Close lightbox on outside click
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = "none";
+        }
+    });
 
     navItems.forEach(item => {
         item.addEventListener("mouseover", () => {

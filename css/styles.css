@@ -20,6 +20,8 @@
     --decorative-gradient: rgba(255, 255, 255, 0.3);
     --color-divider-gradient: linear-gradient(90deg, #4caf50, #2196f3);
     --color-divider-gradient-hover: linear-gradient(90deg, #388e3c, #1976d2);
+    --image-gallery-gradient: linear-gradient(135deg, #f7f8fa, #e9ecef);
+    --image-gallery-gradient-after: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.05));
 }
 
 /* Dark Mode Variables */
@@ -44,6 +46,8 @@
     --decorative-gradient: rgba(0, 0, 0, 0.4);
     --color-divider-gradient: linear-gradient(90deg, #81c784, #64b5f6);
     --color-divider-gradient-hover: linear-gradient(90deg, #4caf50, #2196f3);
+    --image-gallery-gradient: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+    --image-gallery-gradient-after: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.1));
 }
 
 /* Base Styling */
@@ -509,7 +513,7 @@ body {
 .image-gallery {
     padding: 80px 20px;
     text-align: center;
-    background: linear-gradient(135deg, #f7f8fa, #e9ecef);
+    background: var(--image-gallery-gradient);
     position: relative;
     overflow: hidden;
 }
@@ -521,7 +525,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.05));
+    background: var(--image-gallery-gradient-after);
     pointer-events: none;
     z-index: -1;
 }
@@ -540,8 +544,8 @@ body {
     object-fit: cover;
     transition: transform 0.5s ease, opacity 0.5s ease;
     opacity: 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #ddd; /* Placeholder background */
+    box-shadow: 0 4px 10px var(--box-shadow-color);
+    background-color:  var(--card-bg-color);
 }
 
 .lazy-load.loaded {
@@ -552,7 +556,7 @@ body {
 /* Subtle hover effect for images */
 .lazy-load:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px var(--hover-box-shadow);
 }
 
 /* Decorative Elements for Enhanced Aesthetics */
@@ -561,7 +565,7 @@ body {
     display: block;
     width: 100%;
     height: 6px;
-    background: linear-gradient(90deg, #4caf50, #2196f3);
+    background: var(--color-divider-gradient);
     border-radius: 4px;
     margin-top: 8px;
     opacity: 0.8;
@@ -569,7 +573,7 @@ body {
 }
 
 .lazy-load:hover::after {
-    background: linear-gradient(90deg, #388e3c, #1976d2);
+    background: var(--color-divider-gradient-hover);
 }
 
 /* Add Subtle Gradient Background for Images */
@@ -584,6 +588,49 @@ body {
     z-index: 1;
     pointer-events: none;
 }
+
+/* Lightbox Styles */
+.lightbox {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.lightbox-img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px var(--hover-box-shadow);
+}
+
+.lightbox-caption {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #f1f1f1;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: var(--text-color-1);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lightbox-close:hover {
+    color: var(--button-text-color);
+}
+
 
 
 /* Responsive Design */
@@ -723,6 +770,22 @@ body {
 
     .feature-card p {
         font-size: 0.9rem;
+    }
+
+    .lazy-load {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .gallery-container {
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .lightbox-img {
+        max-width: 95%;
+        max-height: 70%;
     }
 }
 
