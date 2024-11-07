@@ -110,22 +110,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const popup = document.getElementById("cta-popup");
     const closePopup = document.querySelector(".popup-close");
+    const popupTitle = document.getElementById("popup-title");
+    const popupMessage = document.getElementById("popup-message");
     const popupInterval = 60000; // Show every 60 seconds
     let popupTimer;
 
+    // Array of popup variants
+    const popupVariants = [
+        {
+            title: "Special Offer Just for You!",
+            message: "Sign up now and get 20% off your first transaction."
+        },
+        {
+            title: "Limited-Time Discount!",
+            message: "Refer a friend and both of you get $10 credit."
+        },
+        {
+            title: "Exclusive Deal!",
+            message: "Upgrade to premium and enjoy 1-month free."
+        },
+    ];
+
+    let currentVariantIndex = 0;
+
+    // Function to update popup content
+    const updatePopupContent = () => {
+        const { title, message } = popupVariants[currentVariantIndex];
+        popupTitle.textContent = title;
+        popupMessage.textContent = message;
+        currentVariantIndex = (currentVariantIndex + 1) % popupVariants.length; // Cycle through variants
+    };
+
+    // Function to show the popup
     const showPopup = () => {
+        updatePopupContent(); // Update content before showing
         popup.classList.add("show");
     };
 
+    // Function to hide the popup and reset timer
     const hidePopup = () => {
         popup.classList.remove("show");
         popupTimer = setTimeout(showPopup, popupInterval);
     };
 
+    // Show the popup after initial delay
     popupTimer = setTimeout(showPopup, popupInterval);
 
+    // Close popup on clicking the close button
     closePopup.addEventListener("click", hidePopup);
 
+    // Optionally, close popup on clicking outside
     window.addEventListener("click", (event) => {
         if (event.target === popup) hidePopup();
     });
