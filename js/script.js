@@ -108,6 +108,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    const popup = document.getElementById("cta-popup");
+    const closePopup = document.querySelector(".popup-close");
+    const popupInterval = 60000; // Show every 60 seconds
+    let popupTimer;
+
+    const showPopup = () => {
+        popup.classList.add("show");
+    };
+
+    const hidePopup = () => {
+        popup.classList.remove("show");
+        popupTimer = setTimeout(showPopup, popupInterval);
+    };
+
+    popupTimer = setTimeout(showPopup, popupInterval);
+
+    closePopup.addEventListener("click", hidePopup);
+
+    window.addEventListener("click", (event) => {
+        if (event.target === popup) hidePopup();
+    });
+
     navItems.forEach(item => {
         item.addEventListener("mouseover", () => {
             navItems.forEach((link) => {
