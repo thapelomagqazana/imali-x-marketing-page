@@ -18,6 +18,8 @@
     --hover-icon-color: #388e3c;
     --hover-box-shadow: rgba(0, 0, 0, 0.1);
     --decorative-gradient: rgba(255, 255, 255, 0.3);
+    --color-divider-gradient: linear-gradient(90deg, #4caf50, #2196f3);
+    --color-divider-gradient-hover: linear-gradient(90deg, #388e3c, #1976d2);
 }
 
 /* Dark Mode Variables */
@@ -40,6 +42,8 @@
     --hover-icon-color: #66bb6a;
     --hover-box-shadow: rgba(0, 0, 0, 0.8);
     --decorative-gradient: rgba(0, 0, 0, 0.4);
+    --color-divider-gradient: linear-gradient(90deg, #81c784, #64b5f6);
+    --color-divider-gradient-hover: linear-gradient(90deg, #4caf50, #2196f3);
 }
 
 /* Base Styling */
@@ -432,6 +436,7 @@ body {
     transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.5s ease;
     opacity: 0;
     transform: translateY(30px); /* Start slightly below the viewport */
+    position: relative;
 }
 
 .feature-icon {
@@ -480,6 +485,25 @@ body {
     background: linear-gradient(45deg, var(--decorative-gradient), transparent);
     pointer-events: none;
     z-index: -1;
+}
+
+/* Colorful Divider Below Each Card */
+.feature-card::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: var(--color-divider-gradient);
+    border-radius: 2px;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* Enhance divider on hover */
+.feature-card:hover::after {
+    width: 100%;
+    background: var(--color-divider-gradient-hover);
 }
 
 
@@ -602,7 +626,7 @@ body {
 
     .features-container {
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
     }
 
     .feature-card {
@@ -690,7 +714,6 @@ body {
         height: 3px;
     }
 
-
     .hamburger::before,
     .hamburger::after {
         height: 3px;
@@ -716,6 +739,36 @@ body {
 
     .countdown-timer span:not(:last-child)::after {
         content: "";
+    }
+
+    .features-section {
+        padding: 50px 20px;
+    }
+
+    .section-title {
+        font-size: 2.3rem;
+        margin-bottom: 40px;
+    }
+
+    .features-container {
+        gap: 25px;
+    }
+
+    .feature-card {
+        padding: 22px;
+        max-width: 320px;
+    }
+
+    .feature-icon {
+        font-size: 2.2rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.4rem;
+    }
+
+    .feature-card p {
+        font-size: 1rem;
     }
 }
 
@@ -781,5 +834,36 @@ body {
 
     .countdown-timer span:not(:last-child)::after {
         font-size: 1.4rem;
+    }
+
+    .features-section {
+        padding: 60px 40px;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+    }
+
+    .features-container {
+        gap: 30px;
+    }
+
+    .feature-card {
+        padding: 25px;
+        max-width: 320px;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.5rem;
+    }
+
+    .feature-card p {
+        font-size: 1rem;
+        line-height: 1.6;
     }
 }
