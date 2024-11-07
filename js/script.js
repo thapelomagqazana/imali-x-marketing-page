@@ -38,6 +38,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // Update the countdown every second
     setInterval(updateCountdown, 1000);
 
+    const fadeInElements = document.querySelectorAll(".fade-in");
+
+    const observerOptions = {
+        threshold: 0.3, // Trigger when 30% of the element is visible
+    };
+
+    const fadeInObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // Stop observing once visible
+            }
+        });
+    }, observerOptions);
+
+    fadeInElements.forEach(element => {
+        fadeInObserver.observe(element);
+    });
+
     navItems.forEach(item => {
         item.addEventListener("mouseover", () => {
             navItems.forEach((link) => {
