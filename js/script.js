@@ -113,7 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const popupTitle = document.getElementById("popup-title");
     const popupMessage = document.getElementById("popup-message");
     const popupInterval = 60000; // Show every 60 seconds
+    const interactionTimeout = 30000; // Reset timer if user interacts within 30 seconds
     let popupTimer;
+    let userInactiveTimer;
 
     // Array of popup variants
     const popupVariants = [
@@ -150,7 +152,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to hide the popup and reset timer
     const hidePopup = () => {
         popup.classList.remove("show");
+        resetPopupTimer();
+    };
+
+    // Function to reset the popup timer
+    const resetPopupTimer = () => {
+        clearTimeout(popupTimer);
         popupTimer = setTimeout(showPopup, popupInterval);
+    };
+
+    // User activity event listener
+    const resetUserInactivityTimer = () => {
+        clearTimeout(userInactiveTimer);
+        userInactiveTimer = setTimeout(resetPopupTimer, interactionTimeout);
     };
 
     // Show the popup after initial delay
@@ -159,9 +173,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Close popup on clicking the close button
     closePopup.addEventListener("click", hidePopup);
 
-    // Optionally, close popup on clicking outside
+    // Close popup on clicking outside
     window.addEventListener("click", (event) => {
         if (event.target === popup) hidePopup();
+    });
+
+    // Track user interaction to reset inactivity timer
+    ["mousemove", "keydown", "click", "scroll"].forEach((event) => {
+        window.addEventListener(event, resetUserInactivityTimer);
     });
 
     navItems.forEach(item => {
